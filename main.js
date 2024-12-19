@@ -1,5 +1,6 @@
 import { handleVariable } from "./handleVariables.js";
 import { handlePrint } from "./handlePrint.js";
+import { handleLoop } from "./handleLoop.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const runButton = document.getElementById('run-button');
@@ -9,50 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var variables = {};
 
-    // Execute entire code
-    function executeCode(code) {
-        const lines = code.split("\n");
-        let output = "";
 
-        for (let line of lines) {
-            try {
-                output += executeLine(line.trim()) + "\n";
-            } catch (error) {
-                output += `Error: ${error.message}\n`;
-            }
-        }
-
-        return output;
-    }
-
-    // Execute a single line of code
-    function executeLine(line) {
-
-        // Handle variable declaration
-        if (line.startsWith("let")) {
-            return handleVariable(line, variables);
-        }
-
-        // Work here guys :)
-
-        else if (line.startsWith("if")) {
-            // return handleIf(line, variables);
-        }
-
-        else if (line.startsWith("loop")) {
-            // return handleLoop(line, variables);
-        }
-
-        else if (line.startsWith("function")) {
-            // return handleFunction(line, variables);
-        }
-
-        // Handle print statement
-        if (line.startsWith("print")) {
-            return handlePrint(line, variables);
-        }
-
-    }
 
     // Run code when Run button is clicked
     runButton.addEventListener('click', () => {
@@ -68,3 +26,48 @@ document.addEventListener('DOMContentLoaded', () => {
         consoleOutput.textContent = '';
     });
 });
+
+// Execute a single line of code
+function executeLine(line, variables) {
+console.log(line);
+    // Handle variable declaration
+    if (line.startsWith("let")) {
+        return handleVariable(line, variables);
+    }
+
+    // Work here guys :)
+
+    else if (line.startsWith("if")) {
+        // return handleIf(line, variables);
+    }
+
+    else if (line.startsWith("loop")) {
+        return handleLoop(line, variables);
+    }
+
+    else if (line.startsWith("function")) {
+        // return handleFunction(line, variables);
+    }
+
+    // Handle print statement
+    if (line.startsWith("print")) {
+        return handlePrint(line, variables);
+    }
+}
+
+// Execute entire code
+function executeCode(code) {
+    const lines = code.split("\n");
+    let output = "";
+
+    for (let line of lines) {
+        try {
+            output += executeLine(line.trim()) + "\n";
+        } catch (error) {
+            output += `Error: ${error.message}\n`;
+        }
+    }
+
+    return output;
+}
+
