@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    display: flex;
+    height: 100vh;
+}
+
+#ide-container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #252526;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #333;
+}
+
+.sidebar h1 {
+    color: #d7ba7d;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    color: #569cd6;
+}
+
+.main-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.toolbar button {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toolbar button:hover {
+    background-color: #005f99;
+}
+
+#editor {
+    flex: 1;
+    background-color: #1e1e1e;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-bottom: 1px solid #333;
+}
+
+#editor[contenteditable="true"] {
+    outline: none;
+    font-family: 'Courier New', Courier, monospace;
+    color: #d4d4d4;
+    line-height: 1.5;
+    white-space: 'white-space-trim';
+}
+
+#editor span {
+    color: #6a9955;
+}
+
+#console {
+    background-color: #252526;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#console h2 {
+    margin: 0 0 10px;
+    color: #d7ba7d;
+}
+
+#console-output {
+    font-family: 'Courier New', Courier, monospace;
+    color: #d4d4d4;
+    white-space: pre-wrap;
+}
