@@ -36,9 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Work here guys :)
 
-        else if (line.startsWith("if")) {
+        else if (line.startsWith("if") || line.startsWith("else")) {
             return handleIf(line, variables);
         }
+        
 
         else if (line.startsWith("loop")) {
             // return handleLoop(line, variables);
