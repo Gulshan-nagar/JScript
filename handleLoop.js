@@ -19,8 +19,8 @@ export function handleLoop(line, variables, executeCode) {
             loopCount = parseInt(loopCount, 10);
         }
 
-        // Extract the code block inside the curly braces using regex
-        let codeBlockMatch = line.match(/{([^}]*)}/);
+        // Extract the code block inside the curly braces
+        let codeBlockMatch = line.match(/{([\s\S]*)}/); // [\s\S] handles multiple lines within the block
         if (!codeBlockMatch || codeBlockMatch.length < 2) {
             throw new Error("Invalid syntax. Loop block must be enclosed in curly braces. Example: loop(5) { print(x); }");
         }
@@ -28,10 +28,17 @@ export function handleLoop(line, variables, executeCode) {
         let codeBlock = codeBlockMatch[1].trim();
         let result = '';
 
-        // Execute the code inside the loop block 'loopCount' times
+        // Execute the code block 'loopCount' times
         for (let i = 0; i < loopCount; i++) {
             result += `Iteration ${i + 1}:\n`;
-            result += executeCode(codeBlock); // Execute the block of code in each iteration
+
+            // Split the block of code into individual lines
+            const lines = codeBlock.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+
+            // Execute each line inside the loop
+            for (let codeLine of lines) {
+                result += executeCode(codeLine) + '\n'; // Execute each line and collect the result
+            }
         }
 
         return result;
