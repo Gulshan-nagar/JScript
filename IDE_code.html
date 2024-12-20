@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
     <style>
-        body { font-family: Arial, sans-serif; }
-        .editor { height: 300px; }
-        #output { margin-top: 20px; padding: 10px; background-color: #f4f4f4; }
-        button { margin-top: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .editor {
+            height: 300px;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+
+        button {
+            margin-top: 10px;
+        }
     </style>
 </head>
+
 <body style="background-color: bisque">
     <h1>My Custom IDE</h1>
     <textarea style="color: grey" id="editor" class="editor"></textarea>
@@ -20,27 +35,21 @@
     <div id="output"></div>
 
     <script>
-        // Initialize the editor using CodeMirror
         const editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
             lineNumbers: true,
-            mode: "javascript", // Temporary mode for JS syntax highlighting
+            mode: "javascript",
             theme: "dark"
         });
-        console.log(editor);
-
-        // Placeholder interpreter function
         function runCode() {
-            const code = editor.value;
-            alert(code);
-                try {
-                // Here, you would implement your interpreter logic
-                let res = eval(code); // Caution: eval is dangerous, used here for quick testing
-                console.log(res);
-                document.getElementById('output').textContent = 'Code executed successfully!' + "\n" + res;
+            const code = editor.getValue();
+            try {
+                let res = eval(code);
+                document.getElementById('output').innerText = 'Code executed successfully!\n' + res;
             } catch (error) {
-                document.getElementById('output').textContent = `Error: ${error.message}`;
+                document.getElementById('output').innerText = `Error: ${error.message}`;
             }
         }
     </script>
 </body>
+
 </html>
