@@ -1,51 +1,41 @@
-
-export function handleLoop(line, variables) {
-    console.log(line, line.lastIndexOf("}"));
-    // Match loop syntax: loop (i = 0; i < 10; i = i + 1) {
-    const loopMatch = line.match(/loop\s*\((.*);(.*);(.*)\)\s*{/);
-    if (!loopMatch) {
-        throw new Error("Invalid loop syntax");
-    }
-
-    const [_, initialization, condition, increment] = loopMatch;
-    console.log(line, line.lastIndexOf("}"));
-
-    // Parse initialization
-    executeLine(initialization.trim(), variables);
-
-    // Extract the block of code inside the loop
-    const loopBodyStartIndex = line.indexOf("{") + 1;
-    const loopBodyEndIndex = line.lastIndexOf("}");
-
-    if (loopBodyStartIndex === -1 || loopBodyEndIndex === -1) {
-        throw new Error("Invalid loop body. Ensure loop block is wrapped with {}.");
-    }
-
-    const block = line
-        .slice(loopBodyStartIndex, loopBodyEndIndex)
-        .split(";")
-        .map((blockLine) => blockLine.trim())
-        .filter((blockLine) => blockLine !== "");
-
-    // Execute the loop
-    while (evaluateCondition(condition, variables)) {
-        for (let blockLine of block) {
-            executeLine(blockLine, variables);
+export function handleLoop(line, variables, executeCode) {
+    // Ensure the line starts with 'loop' and follows the correct syntax
+    if (line.startsWith("loop")) {
+        // Extract the loop count from the line using regex to find the number in parentheses
+        let loopCountMatch = line.match(/loop\(([^)]+)\)/);
+        if (!loopCountMatch || loopCountMatch.length < 2) {
+            throw new Error("Invalid syntax for loop. Example: loop(5) { ... }");
         }
-        executeLine(increment.trim(), variables);
-    }
-}
 
-function evaluateCondition(condition, variables) {
-    // Replace variables in condition
-    for (let variable in variables) {
-        condition = condition.replace(new RegExp(`\\b${variable}\\b`, "g"), variables[variable]);
-    }
+        let loopCount = loopCountMatch[1].trim();
 
-    // Evaluate the condition
-    try {
-        return Function(`"use strict"; return (${condition})`)();
-    } catch (error) {
-        throw new Error("Invalid condition: " + condition);
+        // Ensure the loop count is a valid number or a defined variable
+        if (isNaN(loopCount)) {
+            if (variables[loopCount] === undefined) {
+                throw new Error(`Undefined variable "${loopCount}" used in loop.`);
+            }
+            loopCount = variables[loopCount];
+        } else {
+            loopCount = parseInt(loopCount, 10);
+        }
+
+        // Extract the code block inside the curly braces using regex
+        let codeBlockMatch = line.match(/{([^}]*)}/);
+        if (!codeBlockMatch || codeBlockMatch.length < 2) {
+            throw new Error("Invalid syntax. Loop block must be enclosed in curly braces. Example: loop(5) { print(x); }");
+        }
+
+        let codeBlock = codeBlockMatch[1].trim();
+        let result = '';
+
+        // Execute the code inside the loop block 'loopCount' times
+        for (let i = 0; i < loopCount; i++) {
+            result += `Iteration ${i + 1}:\n`;
+            result += executeCode(codeBlock); // Execute the block of code in each iteration
+        }
+
+        return result;
+    } else {
+        throw new Error("Invalid loop syntax.");
     }
 }

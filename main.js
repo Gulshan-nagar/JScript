@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const editor = document.getElementById('editor');
     const consoleOutput = document.getElementById('console-output');
 
-    var variables = {};
-
-
-
     // Run code when Run button is clicked
     runButton.addEventListener('click', () => {
         const code = editor.value || editor.innerText; // Handle both textarea and contenteditable
@@ -27,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+var variables = {};
 // Execute a single line of code
 function executeLine(line, variables) {
-console.log(line);
     // Handle variable declaration
     if (line.startsWith("let")) {
         return handleVariable(line, variables);
@@ -42,7 +38,7 @@ console.log(line);
     }
 
     else if (line.startsWith("loop")) {
-        return handleLoop(line, variables);
+        return handleLoop(line, variables, executeCode);
     }
 
     else if (line.startsWith("function")) {
