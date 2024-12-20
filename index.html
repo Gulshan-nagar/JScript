@@ -10,7 +10,26 @@
 
 <body>
 
-    
+    <div id="ide-container">
+        <div class="sidebar">
+            <h1>Custom IDE</h1>
+        </div>
+
+        <div class="main-section">
+            <div class="toolbar">
+                <button id="run-button">Run Code</button>
+                <button id="clear-button">Clear Code</button>
+            </div>
+
+            <textarea id="editor" contenteditable="true" placeholder="// Write the code here"></textarea>
+
+            <div id="console">
+                <h2>Output</h2>
+                <div id="console-output"></div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="documentation">
         <h1>Documentation</h1>
@@ -27,9 +46,7 @@
         <p>Instead of <code>for</code> or <code>while</code>, use the <code>loop</code> keyword:</p>
         <pre>
 <span class="comment">// Example of a loop</span>
-<span class="keyword">loop</span> (<span class="variable">i</span> = 0; <span class="variable">i</span> &lt; 10; <span class="variable">i</span>++) {
-    <span class="function">print</span>(<span class="variable">i</span>);
-}
+<span class="keyword">loop</span> (<span class="variable">i</span>) {<span class="function">print</span>(<span class="variable">a</span>);}
         </pre>
 
         <h2>3. Functions</h2>
@@ -63,28 +80,7 @@
         </pre>
     </div>
 
-    <div id="ide-container">
-        <div class="sidebar">
-            <h1>Custom IDE</h1>
-        </div>
-
-        <div class="main-section">
-            <div class="toolbar">
-                <button id="run-button">Run Code</button>
-                <button id="clear-button">Clear Code</button>
-            </div>
-
-            <textarea id="editor" contenteditable="true" spellcheck="false" placeholder="// Write your code here">
-                
-            </textarea>
-
-            <div id="console">
-                <h2>Output</h2>
-                <div id="console-output"></div>
-            </div>
-        </div>
-    </div>
-
+    
 </body>
 
 </html>
