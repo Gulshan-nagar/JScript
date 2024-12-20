@@ -1,5 +1,6 @@
 import { handleVariable } from "./handleVariables.js";
 import { handlePrint } from "./handlePrint.js";
+import { handleFunction } from "./handleFunction.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const runButton = document.getElementById('run-button');
@@ -8,15 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const consoleOutput = document.getElementById('console-output');
 
     var variables = {};
-
     // Execute entire code
     function executeCode(code) {
-        const lines = code.split("\n");
+        let lines = code.split("\n");
         let output = "";
 
-        for (let line of lines) {
+        while (lines.length > 0) {
+            let line = lines.shift().trim();
+            if(line === "") continue;
             try {
-                output += executeLine(line.trim()) + "\n";
+                output += executeLine(line, lines) + "\n";
             } catch (error) {
                 output += `Error: ${error.message}\n`;
             }
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Execute a single line of code
-    function executeLine(line) {
+    function executeLine(line, lines) {
 
         // Handle variable declaration
         if (line.startsWith("let")) {
@@ -44,7 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         else if (line.startsWith("function")) {
-            // return handleFunction(line, variables);
+            let functionLines = [line];
+            let bracesCount = 1;
+
+            while(bracesCount > 0){
+                let nextLines = lines.shift().trim();
+
+                functionLines.push(nextLines);
+
+                if(nextLines.includes("{")) bracesCount++;
+                if(nextLines.includes("}")) bracesCount--;
+            }
+            return handleFunction(functionLines, variables);
         }
 
         // Handle print statement
