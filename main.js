@@ -1,6 +1,7 @@
 import { handleVariable } from "./handleVariables.js";
 import { handlePrint } from "./handlePrint.js";
 import { handleIf } from "./handleIf.js";
+import { handleLoop } from "./handleLoop.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const runButton = document.getElementById('run-button');
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         else if (line.startsWith("loop")) {
-            // return handleLoop(line, variables);
+            return handleLoop(line, variables, executeCode);
         }
 
         else if (line.startsWith("function")) {
