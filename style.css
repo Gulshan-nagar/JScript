@@ -1,106 +1,39 @@
+*{
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #1e1e1e;
-    color: #d4d4d4;
-    display: flex;
-    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: bisque;
 }
 
-#ide-container {
-    display: flex;
+main{
+    width: 98%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.editor {
+    height: 300px;
     width: 100%;
+    border: 1px solid grey;
 }
 
-.sidebar {
-    width: 20%;
-    background-color: #252526;
-    padding: 20px;
-    box-sizing: border-box;
-    border-right: 1px solid #333;
-}
-
-.sidebar h1 {
-    color: #d7ba7d;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-.sidebar ul li:hover {
-    color: #569cd6;
-}
-
-.main-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.toolbar {
-    background-color: #333;
+#output {
+    height: 100px;
+    margin-top: 20px;
     padding: 10px;
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
+    background-color: #f4f4f4;
 }
 
-.toolbar button {
-    background-color: #007acc;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+button {
     cursor: pointer;
-}
-
-.toolbar button:hover {
-    background-color: #005f99;
-}
-
-#editor {
-    flex: 1;
-    background-color: #1e1e1e;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    border-bottom: 1px solid #333;
-}
-
-#editor[contenteditable="true"] {
-    outline: none;
-    font-family: 'Courier New', Courier, monospace;
-    color: #d4d4d4;
-    line-height: 1.5;
-    white-space: 'white-space-trim';
-}
-
-#editor span {
-    color: #6a9955;
-}
-
-#console {
-    background-color: #252526;
-    padding: 15px;
-    box-sizing: border-box;
-}
-
-#console h2 {
-    margin: 0 0 10px;
-    color: #d7ba7d;
-}
-
-#console-output {
-    font-family: 'Courier New', Courier, monospace;
-    color: #d4d4d4;
-    white-space: pre-wrap;
+    margin-top: 10px;
+    background-color: rgb(189, 255, 189);
+    border: 1px solid grey;
 }

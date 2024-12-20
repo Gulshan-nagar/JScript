@@ -4,41 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDE</title>
+    <title>JScript Programming Language</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div id="ide-container">
+    <main>
+        <h1>JScript</h1>
+        <textarea style="color: grey" id="editor" class="editor"></textarea>
+        <button onclick="runCode()">Run Code</button>
+        <div id="output"></div>
+    </main>
 
-        <div class="sidebar">
-            <h1>Custom IDE</h1>
-
-        </div>
-
-        <div class="main-section">
-
-            <div class="toolbar">
-                <button id="run-button">Run Code</button>
-                <button id="clear-button">Clear Code</button>
-            </div>
-
-
-            <div id="editor" contenteditable="true" spellcheck="false">
-
-                <span>// Write your code here</span>
-            </div>
-
-
-            <div id="console">
-                <h2>Output</h2>
-                <div id="console-output"></div>
-            </div>
-        </div>
-    </div>
+    <script src="script.js"></script>
 
 </body>
 
 </html>
-<script type="module" src="main.js"></script>
