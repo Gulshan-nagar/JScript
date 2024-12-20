@@ -10,26 +10,73 @@
 
 <body>
 
-    <div id="ide-container">
+    
 
+    <div id="documentation">
+        <h1>Documentation</h1>
+        <p>Welcome to the documentation of our custom programming language. Below is an explanation of the syntax and features:</p>
+
+        <h2>1. Variables</h2>
+        <p>To declare a variable, use the keyword <code>let</code> followed by the variable name and value:</p>
+        <pre>
+<span class="comment">// Example of variable declaration</span>
+<span class="keyword">let</span> <span class="variable">x</span> = <span class="string">"Hello, World!"</span>;
+        </pre>
+
+        <h2>2. Loops</h2>
+        <p>Instead of <code>for</code> or <code>while</code>, use the <code>loop</code> keyword:</p>
+        <pre>
+<span class="comment">// Example of a loop</span>
+<span class="keyword">loop</span> (<span class="variable">i</span> = 0; <span class="variable">i</span> &lt; 10; <span class="variable">i</span>++) {
+    <span class="function">print</span>(<span class="variable">i</span>);
+}
+        </pre>
+
+        <h2>3. Functions</h2>
+        <p>To define a function, use the <code>function</code> keyword:</p>
+        <pre>
+<span class="comment">// Example of a function</span>
+<span class="keyword">function</span> <span class="variable">greet</span>() {
+    <span class="function">print</span>(<span class="string">"Hello from the custom IDE!"</span>);
+}
+
+<span class="comment">// Calling the function</span>
+<span class="variable">greet</span>();
+        </pre>
+
+        <h2>4. Printing Output</h2>
+        <p>Use the <code>print</code> keyword to display output instead of <code>console.log</code>:</p>
+        <pre>
+<span class="comment">// Printing a message</span>
+<span class="function">print</span>(<span class="string">"This is custom syntax!"</span>);
+        </pre>
+
+        <h2>5. Conditional Statements</h2>
+        <p>Use <code>if</code> and <code>else</code> for conditional logic:</p>
+        <pre>
+<span class="comment">// Example of an if-else statement</span>
+<span class="keyword">if</span> (<span class="variable">x</span> == <span class="string">"Hello"</span>) {
+    <span class="function">print</span>(<span class="string">"Condition is true"</span>);
+} <span class="keyword">else</span> {
+    <span class="function">print</span>(<span class="string">"Condition is false"</span>);
+}
+        </pre>
+    </div>
+
+    <div id="ide-container">
         <div class="sidebar">
             <h1>Custom IDE</h1>
-
         </div>
 
         <div class="main-section">
-
             <div class="toolbar">
                 <button id="run-button">Run Code</button>
                 <button id="clear-button">Clear Code</button>
             </div>
 
-
             <div id="editor" contenteditable="true" spellcheck="false">
-
                 <span>// Write your code here</span>
             </div>
-
 
             <div id="console">
                 <h2>Output</h2>
