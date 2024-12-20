@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const editor = document.getElementById('editor');
     const consoleOutput = document.getElementById('console-output');
 
+
+    var variables = {};
+
     // Run code when Run button is clicked
     runButton.addEventListener('click', () => {
         const code = editor.value || editor.innerText; // Handle both textarea and contenteditable
@@ -23,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-var variables = {};
 // Execute a single line of code
 function executeLine(line, variables) {
     // Handle variable declaration
