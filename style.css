@@ -1,4 +1,6 @@
 *{
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
@@ -10,30 +12,89 @@ body {
 }
 
 main{
-    width: 98%;
-    margin: 0 auto;
-    padding: 20px;
+    width: 100%;
+    margin: 0;
+    height: fit-content;
+    padding: 0 20px 20px;
     background-color: rgb(236, 236, 236);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    /* border: 1px solid grey; */
+}
+
 .editor {
-    height: 300px;
+    height: 396px;
     width: 100%;
-    border: 1px solid grey;
+    border: none;
 }
 
 #output {
-    height: 100px;
-    margin-top: 20px;
+    height: 400px;
     padding: 10px;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
+    border: 1px solid rgb(189, 189, 189);
 }
 
-button {
+main button {
+    padding: 4px 6px;
     cursor: pointer;
-    margin-top: 10px;
-    background-color: rgb(189, 255, 189);
+    background-color: white;
     border: 1px solid grey;
+}
+
+#buttons{
+    padding: 3px 5px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #bebebe;
+    border: 1px solid grey;
+}
+
+.CodeMirror{
+    font-size: 16px;
+    border: 1px solid rgb(189, 189, 189);
+}
+
+.CodeMirror.cm-s-dracula {
+    height: 400px;
+    cursor: text;
+}
+
+.CodeMirror-sizer {
+    position: relative;
+    border-right: 50px solid transparent;
+    margin: 5px;
+}
+
+.CodeMirror-gutters {
+    border-right: 1px solid #ddd;
+    cursor: default;
+}
+
+.CodeMirror-code{
+    font-size: 16px;
+}
+
+main > section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+    height: fit-content;
+    min-height: 100vh;
+}
+
+@media screen and (max-width: 768px){
+    main > section{
+        grid-template-columns: 1fr;
+    }
+    main{
+        height: fit-content;
+    }
 }

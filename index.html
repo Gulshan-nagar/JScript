@@ -11,10 +11,23 @@
 <body>
 
     <main>
-        <h1>JScript</h1>
-        <textarea style="color: grey" id="editor" class="editor"></textarea>
-        <button onclick="runCode()">Run Code</button>
-        <div id="output"></div>
+        <header>
+            <h1>JScript</h1>
+        </header>
+        <section>
+            <div>
+                <div id="buttons">
+                    <button onclick="runCode()">Run Code</button>
+                </div>
+                <textarea id="editor" class="editor"></textarea>
+            </div>
+            <div>
+                <div id="buttons">
+                    <button onclick="clearCode()">Clear</button>
+                </div>
+                <div id="output"></div>
+            </div>
+        </section>
     </main>
 
     <script src="script.js"></script>

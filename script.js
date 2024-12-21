@@ -29,7 +29,7 @@ function recievedData(code) {
     const configuration = {
         lineNumbers: true,
         mode: "javascript",
-        theme: "dark"
+        theme: "dracula",
     };
 
     editor = eval(code);
@@ -38,7 +38,7 @@ function recievedData(code) {
 // Run Code...
 function runCode() {
     const code = editor.getValue();
-    if(code === '') {
+    if (code === '') {
         document.getElementById('output').innerText = 'Please write some code to execute!';
         return;
     }
@@ -48,4 +48,9 @@ function runCode() {
     } catch (error) {
         document.getElementById('output').innerText = `Error: ${error.message}`;
     }
+}
+
+function clearCode(){
+    // editor.setValue('');
+    document.getElementById('output').innerText = '';
 }
