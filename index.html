@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,19 +14,64 @@
         <header>
             <h1>JScript</h1>
         </header>
-        <section>
-            <div>
+
+        <section id="ide-container">
+            <div class="ide-section">
                 <div id="buttons">
                     <button onclick="runCode()">Run Code</button>
                 </div>
-                <textarea id="editor" class="editor"></textarea>
+                <textarea id="editor" class="editor" contenteditable="true" spellcheck="false" placeholder="// Write your code here"></textarea>
             </div>
-            <div>
+
+            <div class="output-section">
                 <div id="buttons">
-                    <button onclick="clearCode()">Clear</button>
+                    <button onclick="clearCode()" style=" background-color: #007acc;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;">Clear</button>
                 </div>
-                <div id="output"></div>
+                <div id="output">
+                    <h2>Output</h2>
+                    <div id="console-output"></div>
+                </div>
             </div>
+        </section>
+
+        <section id="documentation">
+            <h1>Documentation</h1>
+            <p>Welcome to the custom programming language documentation. Below are examples of our syntax and how it works:</p>
+
+            <h2>1. Variables</h2>
+            <p>Assign a value to a variable simply using the syntax:</p>
+            <pre>
+x = 10;
+x;
+            </pre>
+
+            <h2>2. If-Else Statements</h2>
+            <p>Use the <code>if</code> and <code>else</code> keywords for conditional logic:</p>
+            <pre>
+if (x > 5) {
+    x;
+} else {
+    y;
+}
+            </pre>
+
+            <h2>3. Loops</h2>
+            <p>Use the <code>for</code> keyword to iterate:</p>
+            <pre>
+x=""
+
+for (i = 0; i < 5; i++) {
+    x+=i+""
+}
+
+x
+            </pre>
+
         </section>
     </main>
 
@@ -34,4 +79,7 @@
 
 </body>
 
-</html>
+</html> 
+
+
+
