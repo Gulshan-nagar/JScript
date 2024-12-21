@@ -1,75 +1,61 @@
-export function handleIf(line, variables, codeLines) {
-  // Regex to match "if (condition)"
-  const conditionRegex = /^if\s*\(([^)]+)\)\s*\{?/;
-  const match = conditionRegex.exec(line);
+export function handleIf(line, variables) {
+    // Define a regex pattern to match if, else if, and else blocks
+    const ifRegex = /if\s*\(([^)]+)\)\s*\{([^}]*)\}/;
+    const elseIfRegex = /else\s+if\s*\(([^)]+)\)\s*\{([^}]*)\}/;
+    const elseRegex = /else\s*\{([^}]*)\}/;
 
-  if (!match) {
-      throw new Error("Invalid if statement syntax");
-  }
+    if (line.startsWith("if")) {
+        const match = line.match(ifRegex);
+        if (!match) throw new Error("Invalid syntax for if statement. Example: if (x > 10) { print(x); }");
 
-  const condition = match[1].trim(); // Extract condition
-  const conditionResult = evaluateCondition(condition, variables);
+        const condition = match[1].trim();
+        const body = match[2].trim();
 
-  if (!conditionResult) {
-      return ""; // Skip block if condition is false
-  }
+        if (evaluateCondition(condition, variables)) {
+            return executeBlock(body, variables);
+        }
+    } else if (line.startsWith("else if")) {
+        const match = line.match(elseIfRegex);
+        if (!match) throw new Error("Invalid syntax for else if statement. Example: else if (x > 10) { print(x); }");
 
-  // Execute the block
-  return executeBlock(codeLines, variables);
+        const condition = match[1].trim();
+        const body = match[2].trim();
+
+        if (evaluateCondition(condition, variables)) {
+            return executeBlock(body, variables);
+        }
+    } else if (line.startsWith("else")) {
+        const match = line.match(elseRegex);
+        if (!match) throw new Error("Invalid syntax for else statement. Example: else { print(x); }");
+
+        const body = match[1].trim();
+        return executeBlock(body, variables);
+    }
+
+    throw new Error("No matching condition in if-else block.");
 }
 
+// Evaluate the condition of an if/else if statement
 function evaluateCondition(condition, variables) {
-  // Replace variables with their values
-  const expression = condition.replace(/\b\w+\b/g, (name) => {
-      if (variables.hasOwnProperty(name)) {
-          return variables[name];
-      }
-      return name; // Keep literals and operators
-  });
-
-  // Evaluate the condition
-  try {
-      return eval(expression); // true or false
-  } catch (error) {
-      throw new Error(`Error in condition: ${error.message}`);
-  }
+    const evaluator = new ExpressionEvaluator(variables); // Use the existing ExpressionEvaluator
+    try {
+        return !!evaluator.evaluate(condition); // Convert to boolean
+    } catch (error) {
+        throw new Error(`Invalid condition: ${condition}`);
+    }
 }
 
-function executeBlock(codeLines, variables) {
-  let output = "";
-  let block = [];
-  let braceCount = 0;
+// Execute the block of code inside if/else if/else
+function executeBlock(body, variables) {
+    const lines = body.split(";");
+    let output = "";
 
-  for (let line of codeLines) {
-      if (line.includes("{")) {
-          braceCount++;
-      }
-      if (line.includes("}")) {
-          braceCount--;
-      }
+    for (let line of lines) {
+        line = line.trim();
+        if (line) {
+            output += executeLine(line, variables) + "\n"; // Use executeLine from `main.js`
+        }
+    }
 
-      block.push(line.trim());
-      if (braceCount === 0) break;
-  }
-
-  // Execute each line in the block
-  for (const statement of block) {
-      if (statement.startsWith("print")) {
-          const printContent = statement.match(/print\s+"([^"]+)"/);
-          if (printContent) {
-              output += printContent[1] + "\n";
-          } else {
-              throw new Error("Invalid print statement inside if block");
-          }
-      } else if (statement.startsWith("let")) {
-          const [_, name, value] = statement.match(/let\s+(\w+)\s*=\s*(.+)/) || [];
-          if (name && value) {
-              variables[name] = eval(value);
-          } else {
-              throw new Error("Invalid variable declaration inside if block");
-          }
-      }
-  }
-
-  return output.trim();
+    return output.trim();
 }

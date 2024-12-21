@@ -7,9 +7,12 @@
     <title>Custom IDE</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: bisque;
+            padding: 20px;
         }
 
         .editor {
@@ -20,17 +23,28 @@
             margin-top: 20px;
             padding: 10px;
             background-color: #f4f4f4;
+            border: 1px solid #ddd;
         }
 
         button {
             margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 
-<body style="background-color: bisque">
+<body>
     <h1>My Custom IDE</h1>
-    <textarea style="color: grey" id="editor" class="editor" placeholder="// Write the code here"></textarea>
+    <textarea id="editor" class="editor" placeholder="// Write the code here"></textarea>
     <button onclick="runCode()">Run Code</button>
     <div id="output"></div>
 
@@ -38,13 +52,21 @@
         const editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
             lineNumbers: true,
             mode: "javascript",
-            theme: "dark"
+            theme: "dracula"
         });
+
         function runCode() {
             const code = editor.getValue();
+            const log = []; // Array to store console logs
+            const customConsole = {
+                log: (...args) => log.push(...args) // Push log outputs into the array
+            };
+
             try {
-                let res = eval(code);
-                document.getElementById('output').innerText = 'Code executed successfully!\n' + res;
+                // Bind custom console to the evaluated code
+                let result = new Function("console", code)(customConsole);
+                document.getElementById('output').innerText = 
+                    `Code executed successfully!\n${log.join('\n')}`;
             } catch (error) {
                 document.getElementById('output').innerText = `Error: ${error.message}`;
             }
