@@ -1,85 +1,231 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JScript Programming Language</title>
+    <link rel="shortcut icon" href="./images/JScript_logo.png" type="image/x-icon" class="favicon">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <main>
+
         <header>
-            <h1>JScript</h1>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img style="width: 40px;" src="./images/JScript_logo.png" alt="Logo">
+                <h1>JScript</h1>
+            </div>
+            <button id="menuButton" aria-label="Menu"
+                style="background: none; border: 1px solid #d7ba7d; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#d7ba7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-menu">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <div id="menuDisplay">
+                <div>
+                    <h2>
+                        Developed by: <br><br>
+                    </h2>
+                </div>
+                <div>
+                    <div id="ropeContainer">
+                        <a href="https://github.com/ut-pro" target="_blank" class="animatedLink">Utkarsh</a>
+                    </div>
+                    <div id="ropeContainer">
+                        <a href="https://github.com/vaibhav2sharma" target="_blank" class="animatedLink">Vaibhav</a>
+                    </div>
+                    <div id="ropeContainer">
+                        <a href="https://github.com/Baladattu" target="_blank" class="animatedLink">Bala</a>
+                    </div>
+                    <div id="ropeContainer">
+                        <a href="https://github.com/Gulshan-nagar" target="_blank" class="animatedLink">Gulshan</a>
+                    </div>
+                    <div id="ropeContainer">
+                        <a href="https://abhi-5174.github.io/.dev" target="_blank" class="animatedLink">Abhi</a>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <section id="ide-container">
             <div class="ide-section">
                 <div id="buttons">
+                    <h2>Editor</h2>
                     <button onclick="runCode()">Run Code</button>
                 </div>
-                <textarea id="editor" class="editor" contenteditable="true" spellcheck="false" placeholder="// Write your code here"></textarea>
+                <textarea id="editor" class="editor" contenteditable="true" spellcheck="false"></textarea>
             </div>
 
             <div class="output-section">
                 <div id="buttons">
-                    <button onclick="clearCode()" style=" background-color: #007acc;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;">Clear</button>
+                    <h2>Output</h2>
+                    <button onclick="clearCode()">Clear</button>
                 </div>
                 <div id="output">
-                    <h2>Output</h2>
                     <div id="console-output"></div>
                 </div>
             </div>
         </section>
 
         <section id="documentation">
-            <h1>Documentation</h1>
-            <p>Welcome to the custom programming language documentation. Below are examples of our syntax and how it works:</p>
+            <h1>Welcome to the Official JScript Documentation</h1>
+            <ul>
+                <li>
+                    <p>
+                        JScript is a programming language designed to provide a foundational understanding of how
+                        official
+                        programming languages function.
+                        It serves as both an educational tool and a practical language for tackling modern coding
+                        challenges.
+                        JScript is built with an emphasis on readability, simplicity, and a structured approach, making
+                        it an
+                        excellent choice for beginners
+                        and a reliable tool for experienced developers seeking clarity in their code.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The primary objective behind developing this programming language is to gain a foundational
+                        understanding of how professional programming languages operate. Additionally, this project
+                        provides an opportunity to learn JavaScript in greater depth, ensuring a thorough grasp of its
+                        concepts and applications.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This project marks our first significant undertaking, offering invaluable experience in team
+                        collaboration. It allows us to work together, navigating the challenges that inevitably arise
+                        during the development process. Through this hands-on experience, we address various issues as
+                        they emerge, fostering a deeper understanding of problem-solving in a collaborative environment.
+                        This initiative not only strengthens our technical skills but also enhances our ability to work
+                        effectively as a team in real-world development scenarios.
+                    </p>
+                </li>
+            </ul>
+            <h2>Key Features of JScript:</h2>
+            <ul>
+                <li><strong>Readable Syntax:</strong> A clean, intuitive design that prioritizes clarity.</li>
+                <li><strong>Ease of Use:</strong> Beginners can learn from this language that how professional language
+                    works.</li>
+            </ul>
+            <h2>Examples of JScript Syntax and Functionality:</h2>
+            <ul>
+                <li>
+                    <p>
+                        The following sections provide examples of JScript's syntax, illustrating how it simplifies
+                        common
+                        programming tasks while remaining robust for more advanced uses.
+                    </p>
+                </li>
+            </ul>
 
-            <h2>1. Variables</h2>
-            <p>Assign a value to a variable simply using the syntax:</p>
-            <pre>
-x = 10;
-x;
-            </pre>
+            <br>
 
-            <h2>2. If-Else Statements</h2>
-            <p>Use the <code>if</code> and <code>else</code> keywords for conditional logic:</p>
-            <pre>
+            <h2>1. Printing Values</h2>
+            <ul>
+                <li>
+                    <p>Whatever you want to print just write it for example if you want to print variable</p>
+                    <pre>
+x = 10
+x
+
+or
+
+x = "Hello World"
+x
+                    </pre>
+                </li>
+                <li>
+                    <p>If you want to print directly</p>
+                    <pre>
+100 // value
+
+or
+
+"Hello World"
+                    </pre>
+                </li>
+            </ul>
+
+            <h2>2. Declaring variables</h2>
+            <ul>
+                <li>
+                    <p>Assign a value to a variable simply using the syntax:</p>
+                    <pre>
+x = 10
+x
+                    </pre>
+                </li>
+            </ul>
+
+            <h2>3. If-Else Statements</h2>
+            <ul>
+                <li>
+                    <p>Use the <code>if</code> and <code>else</code> keywords for conditional logic:</p>
+                    <pre>
+x = 10
+y = 20
+
 if (x > 5) {
-    x;
-} else {
-    y;
+    x
 }
-            </pre>
+else {
+    y
+}
+                    </pre>
+                </li>
+            </ul>
 
-            <h2>3. Loops</h2>
-            <p>Use the <code>for</code> keyword to iterate:</p>
-            <pre>
-x=""
+            <h2>4. Loops </h2>
+            <ul>
+                <li>
+                    <p>Use the <code>for</code> keyword to iterate:</p>
+                    <pre>
+x = ""
 
 for (i = 0; i < 5; i++) {
-    x+=i+""
+    x += i + " "
 }
 
 x
-            </pre>
+                    </pre>
+                </li>
+            </ul>
+
+            <h2>5. Functions </h2>
+            <ul>
+                <li>
+                    <p>Use the <code>function</code> keyword to declare a function</p>
+                    <pre>
+function name(){
+    return "Hello World"
+}
+
+name()
+                    </pre>
+                </li>
+            </ul>
 
         </section>
+
+        <footer>
+            <h2>
+                Thank you for using JScript Programming Language
+            </h2>
+            <p>&copy; 2024 JScript Programming Language</p>
+        </footer>
+
     </main>
 
     <script src="script.js"></script>
 
 </body>
 
-</html> 
-
-
-
+</html>
