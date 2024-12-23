@@ -23,7 +23,7 @@ This project marks our first significant undertaking, offering invaluable experi
         ├─ README.md
 
 ## Video Walkthrough of the project
-Attach a very short video walkthough of all of the features [ 1 - 3 minutes ]
+- https://youtu.be/AySe88z6TK0?si=Vr14QsirHE69srvY
 
 ## Features
 - **Custom Programming Language**: Includes support for variables, data types, conditionals, loops, and functions.
