@@ -4,9 +4,10 @@ let editor, code;
 // Fetching Data...
 (async function settingsLinks() {
     try {
-        const URL = `https://custom-ide-default-rtdb.firebaseio.com/depedencies.json`;
+        const URL = `https://myproject-f2bd3-default-rtdb.firebaseio.com/dependencies.json`;
         const response = await fetch(URL);
         const data = await response.json();
+        console.log(data)
         if (!data) {
             throw new Error('No data found');
         }
